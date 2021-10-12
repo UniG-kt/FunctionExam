@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>掲示板編集画面</h3>
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %} " role="alert">
+            {{ message.message }}
+        </div>
+    {% endfor %}
+{% endif %}
+<form method="POST">
+    {% csrf_token %}
+    {{ edit_theme_form.as_p }}
+    <input class="btn btn-outline-primary" type="submit" value="掲示板更新">
+</form>
+<p><a  href="{% url 'boards:delete_theme' id=id %}">掲示板を削除する</a></p>
+{% endblock %}

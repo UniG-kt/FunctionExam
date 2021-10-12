@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>掲示板削除画面</h3>
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %} " role="alert">
+            {{ message.message }}
+        </div>
+    {% endfor %}
+{% endif %}
+<form method="POST">
+    {% csrf_token %}
+    {{ delete_theme_form.as_p }}
+    <input class="btn btn-outline-danger" type="submit" value="掲示板削除">
+</form>
+{% endblock %}
